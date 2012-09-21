@@ -1,8 +1,7 @@
-=Deviation Loader
+#Deviation Loader
 
 
-
-==example
+##example
 
     $.getDeviations(['henry1025', 'ladav'], function(deviations) {
         var $container = $('#container');
@@ -13,5 +12,5 @@
     });
     
     
-==DEMO
+##DEMO
 [team3.tk](http://team3.tk)
