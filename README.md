@@ -3,7 +3,7 @@
 
 ##example
 
-    $.getDeviations(['henry1025', 'ladav'], function(deviations) {
+    $.getDeviations(['henry1025', 'ladav01'], function(deviations) {
         var $container = $('#container');
         
         $.each(deviations, function(i, deviation) {
