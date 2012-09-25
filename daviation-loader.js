@@ -46,14 +46,16 @@
 
         function next(ds, author) {
             for(var i=0, d; d=ds[i++];) {
-                data.push({
-                    title:	d.title
-                    ,link:	d.link
-                    ,time:	new Date(d.publishedDate)
-                    ,desc:	d.contentSnippet
-                    ,thumb:	d.mediaGroups[0].contents[0].thumbnails[1].url
-                    ,author: author
-                });
+                try {
+                        data.push({
+                            title:	d.title
+                            ,link:	d.link
+                            ,time:	new Date(d.publishedDate)
+                            ,desc:	d.contentSnippet
+                            ,thumb:	d.mediaGroups[0].contents[0].thumbnails[1].url
+                            ,author: author
+                        });
+                } catch(e) {}
             }
             
             if(--count == 0) {
