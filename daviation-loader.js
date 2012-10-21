@@ -43,7 +43,7 @@
             });
         }
 
-        function next(ds, author) {
+        function next(ds) {
             for(var i=0, d; d=ds[i++];) {
                 try {
 					var ctns = d.mediaGroups[0].contents;
