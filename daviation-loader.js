@@ -32,14 +32,13 @@
             data	= [];
         
         for(var i=authors.length; i--;) {
-            var author = authors[i];
             $.getJSON(
                 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' +max
                 +'&q=http%3A%2F%2Fbackend.deviantart.com%2Frss.xml%3Ftype%3Ddeviation%26q%3D'
-                +'by%253A' +encodeURIComponent(author)
+                +'by%253A' +encodeURIComponent(authors[i])
                 +'&callback=?'
                 , function(rs) {
-                    next(rs.responseData.feed.entries, author)
+                    next(rs.responseData.feed.entries)
                 }
             });
         }
@@ -47,14 +46,19 @@
         function next(ds, author) {
             for(var i=0, d; d=ds[i++];) {
                 try {
-                        data.push({
-                            title:	d.title
-                            ,link:	d.link
-                            ,time:	new Date(d.publishedDate)
-                            ,desc:	d.contentSnippet
-                            ,thumb:	d.mediaGroups[0].contents[0].thumbnails[1].url
-                            ,author: author
-                        });
+					var ctns = d.mediaGroups[0].contents;
+					data.push({
+						title:		d.title
+						,link:		d.link
+						,time:		new Date(d.publishedDate)
+						,desc:		d.contentSnippet
+						,author:	ctns[0].credits[0].content
+						,thumb:		ctns[0].thumbnails[1].url //same as thumb300
+						,thumb150:	ctns[0].thumbnails[0].url
+						,thumb300:	ctns[0].thumbnails[1].url
+						,thumb900:	ctns[0].url
+						,original:	ctns[1].url
+					});
                 } catch(e) {}
             }
             
