@@ -40,7 +40,7 @@
                 , function(rs) {
                     next(rs.responseData.feed.entries)
                 }
-            });
+            );
         }
 
         function next(ds) {
